@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.github.javafaker.Faker;
+
 import abstractcomponent.abstractcomponent;
 
 public class SignUp extends abstractcomponent{
@@ -32,7 +34,7 @@ public class SignUp extends abstractcomponent{
 	WebElement email_Id;
 	@FindBy (xpath="//input[@placeholder='Password']")
 	WebElement pass;
-	@FindBy (xpath="//button[normalize-space()='Sign up'")
+	@FindBy (xpath="//button[@type='submit']")
 	WebElement signup;
 	
 	public void SignUpData() throws IOException, InterruptedException
@@ -42,14 +44,34 @@ public class SignUp extends abstractcomponent{
 		prop.load(fsi);
 		String firstname=prop.getProperty("firstname");
 		String lastname=prop.getProperty("lastname");
-		String email=prop.getProperty("email");
+		String email=randomstring();
 		String password=prop.getProperty("password");
 		firstName.sendKeys(firstname);
 		lastName.sendKeys(lastname);
 		email_Id.sendKeys(email);
 		pass.sendKeys(password);
-		Thread.sleep(5000);//	signup.click();
+		signup.click();
+		//Thread.sleep(5000);//	signup.click();
+		
+		
+		
+		
 	}
+	
+	public String randomstring() {
+		Faker random=new Faker();
+		
+		String firstname=random.name().firstName();
+		String lastname=random.name().lastName();
+		
+		String email=firstname.toLowerCase()+""+lastname.toLowerCase()+"@gmail.com";
+	
+		return email;
+		
+	}
+	
+	
+	
 	
 
 
