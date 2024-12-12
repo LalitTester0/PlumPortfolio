@@ -64,19 +64,15 @@ public class PlumVisionnew extends abstractcomponent {
 
 		rb.keyPress(KeyEvent.VK_ENTER);
 		rb.keyRelease(KeyEvent.VK_ENTER);
-		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		//WebElement startdate1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Start Date']")));
-		//startdate1.click();
-		Thread.sleep(5000);
+		
 		
 	}
 	
 	public void Startdate() throws InterruptedException {
 		
-		Actions act=new Actions(driver);
-		act.click(startdate).perform();
-		System.out.println("**");
 			Thread.sleep(5000);
+			startdate.click();
+			
 			startdate.sendKeys("2024/06/01");
 			System.out.println("***");
 			enddate.sendKeys("2024/06/30");
