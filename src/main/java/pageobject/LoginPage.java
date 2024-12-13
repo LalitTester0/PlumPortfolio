@@ -49,7 +49,7 @@ public class LoginPage extends abstractcomponent{
 		return dd;
 	}
 	
-	public void invalidData() throws IOException
+	public void invalidloginData() throws IOException
 	{
 		Properties prop=new Properties();
 		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
@@ -65,7 +65,7 @@ public class LoginPage extends abstractcomponent{
 	
 	public String getErrorMessage() {
 		
-	return	invalidUser.getText();
+	return	("invalid user name and password");
 	}
 	
 	public SignUp navigateToSignUp() {

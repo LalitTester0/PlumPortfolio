@@ -70,16 +70,16 @@ public class PlumVisionnew extends abstractcomponent {
 	
 	public void Startdate() throws InterruptedException {
 		
-			Thread.sleep(5000);
-			startdate.click();
-			
-			startdate.sendKeys("2024/06/01");
-			System.out.println("***");
-			enddate.sendKeys("2024/06/30");
-			System.out.println("****");
-			enddate.sendKeys(Keys.ENTER);
-			playbutton.click();
-			System.out.println("*****");
+		WebElement strtdate=driver.findElement(By.xpath("//input[@placeholder='Start Date']"));
+		Thread.sleep(10000);
+
+		strtdate.click();
+		strtdate.sendKeys("2024/06/01");
+		WebElement enddate=driver.findElement(By.xpath("//input[@placeholder='End Date']"));
+		enddate.sendKeys("2024/06/30");
+		enddate.sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("//div[contains(@class,'_playBtnDiv')]")).click();
+		Thread.sleep(5000);
 	}
 	
 	

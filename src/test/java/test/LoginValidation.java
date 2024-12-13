@@ -22,9 +22,10 @@ public class LoginValidation extends BaseTest {
 	{
 		
 		page.goTo();
-		page.invalidData();
+		page.invalidloginData();
 		Thread.sleep(10000);
-		page.getErrorMessage();
+	//	page.getErrorMessage();
+		System.out.println(page.getErrorMessage());
 	}
 		
 	
