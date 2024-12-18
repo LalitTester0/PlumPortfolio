@@ -20,35 +20,42 @@ public class BackTestAssetAllocation extends abstractcomponent {
 	
 	
 	@FindBy(xpath="//div[text()='Asset Allocation']")
-	WebElement source1;
+	WebElement assetallocation;
 	@FindBy(xpath="//div[@class='_dropChartContainer_pl9cj_11']")
-	WebElement destination1;
+	WebElement dropcontainer;
 	
 	@FindBy(xpath="//div[contains(text(),'Asset Performance')]/parent::div")
-	WebElement source2;
+	WebElement assetperformance;
 	@FindBy(xpath="//div[contains(@class,'_chartContainer_')]")
-	WebElement destination2;
+	WebElement dropcontainer1;
 	
 	@FindBy(xpath="//div[contains(text(),'Drawdown')]")
-	WebElement source3;
+	WebElement drawdown;
 	@FindBy(xpath="//div[contains(@class,'_chartContainer_')]")
-	WebElement destination3;
+	WebElement dropcontainer2;
 	
 	
 	@FindBy(xpath="//div[contains(text(),'Portfolio Growth')]")
-	WebElement source4;
+	WebElement portfoliogrowth;
 	@FindBy(xpath="//div[text()='Drop a chart type to display it here.']")
-	WebElement destination4;
+	WebElement dropcontainer3;
 	
 	@FindBy(xpath="//div[contains(text(),'Monthly Pnl Heatmap')]")
-	WebElement source5;
+	WebElement monthlypnlheatmap;
 	@FindBy(xpath="//div[contains(@class,'_chartContainer_')]")
-	WebElement destination5;
+	WebElement dropcontainer4;
 	
 	@FindBy(xpath="//div[contains(text(),'Monthly Heatmap')]")
-	WebElement source6;
+	WebElement monthlyheatmap;
 	@FindBy(xpath="//div[contains(@class,'_chartContainer_')]")
-	WebElement destination6;
+	WebElement dropcontainer5;
+	
+	//date validation message WebElement
+		@FindBy(xpath="//div[contains(text(),'Error: No data available please change the dates!!')]")
+		//(By.xpath("//div[contains(text(),'Error: No data available please change the dates!!')]"))
+		//Error: No data available please change the dates!!!
+		WebElement datevalidationmessage;
+	
 	
 	//chat module webelement
 	
@@ -75,6 +82,12 @@ public class BackTestAssetAllocation extends abstractcomponent {
 	@FindBy(xpath="//div[text()='Logout']")
 	WebElement logout;
 	
+	@FindBy(xpath="//div[@class='_people_1trqr_1']//p[contains(text(),'test new')]")
+	WebElement testnew;
+	
+	@FindBy(xpath="//div[@class='_chatOther_r1biz_1']//p[text()='hi']")
+	WebElement recivermsg;
+	
 	
 	
 	
@@ -82,42 +95,44 @@ public class BackTestAssetAllocation extends abstractcomponent {
 	{
 		
 		Actions actions = new Actions(driver);
-		actions.dragAndDrop(source1, destination1).perform();
+		actions.dragAndDrop(assetallocation, dropcontainer).perform();
 		Thread.sleep(10000);
+		
+		
 	}
 	
 	public void AssetPerformance() throws InterruptedException {
 		
 		Actions actions=new Actions(driver);
-		actions.dragAndDrop(source2, destination2).perform();
+		actions.dragAndDrop(assetperformance, dropcontainer1).perform();
 		Thread.sleep(10000);
 	}
 	
 	public void Drawdown() throws InterruptedException {
 		
 		Actions actions=new Actions(driver);
-		actions.dragAndDrop(source3, destination3).perform();
+		actions.dragAndDrop(drawdown, dropcontainer2).perform();
 		Thread.sleep(10000);
 	}
 	
 	public void PortFolioGrowth() throws InterruptedException {
 		
 		Actions actions=new Actions(driver);
-		actions.dragAndDrop(source4, destination4).perform();
+		actions.dragAndDrop(portfoliogrowth, dropcontainer3).perform();
 		Thread.sleep(10000);
 	}
 	
 	public void MonthlyPnlHeatmap() throws InterruptedException {
 		
 		Actions actions=new Actions(driver);
-		actions.dragAndDrop(source5, destination5).perform();
+		actions.dragAndDrop(monthlypnlheatmap,dropcontainer4 ).perform();
 		Thread.sleep(10000);
 	}
 	
 	public void MonthlyHeatmap() throws InterruptedException {
 		
 		Actions actions=new Actions(driver);
-		actions.dragAndDrop(source6, destination6).perform();
+		actions.dragAndDrop(monthlyheatmap, dropcontainer5).perform();
 		Thread.sleep(10000);
 		
 	}
@@ -125,7 +140,7 @@ public class BackTestAssetAllocation extends abstractcomponent {
 		public void ChatSend() throws InterruptedException {
 			
 			chat.click();
-			Thread.sleep(5000);
+			
 			username.click();
 			
 			message.sendKeys("hi");
@@ -147,5 +162,19 @@ public class BackTestAssetAllocation extends abstractcomponent {
 		logout.click();
 		Thread.sleep(10000);
 	}
-
+	
+	public String DateSelectionValidation() throws InterruptedException {
+		Thread.sleep(5000);
+		System.out.println(datevalidationmessage.getText());
+		return datevalidationmessage.getText();
+	}
+    
+	public String ChatReciver() throws InterruptedException {
+		
+		chat.click();
+		testnew.click();
+		Thread.sleep(2000);
+		System.out.println(recivermsg.getText());
+		return recivermsg.getText();
+	}
 }

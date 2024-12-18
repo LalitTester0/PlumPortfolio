@@ -42,6 +42,10 @@ public class PlumVisionnew extends abstractcomponent {
 	@FindBy(xpath="//div[contains(@class,'_playBtnDiv')]")
 	WebElement playbutton;
 	
+	
+	@FindBy(xpath="//div[contains(text(),'An error occurred while uploading the file. Please try again.')]")	
+	WebElement wrongfile;
+	
 	public void CsvFileupload() throws AWTException, InterruptedException {
 		
 		
@@ -81,7 +85,46 @@ public class PlumVisionnew extends abstractcomponent {
 		driver.findElement(By.xpath("//div[contains(@class,'_playBtnDiv')]")).click();
 		Thread.sleep(5000);
 	}
+	public void NodataStartdate() throws InterruptedException {
+		WebElement strtdate=driver.findElement(By.xpath("//input[@placeholder='Start Date']"));
+		Thread.sleep(10000);
+
+		strtdate.click();
+		strtdate.sendKeys("2025/01/01");
+		WebElement enddate=driver.findElement(By.xpath("//input[@placeholder='End Date']"));
+		enddate.sendKeys("2025/01/30");
+		enddate.sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("//div[contains(@class,'_playBtnDiv')]")).click();
+		
+		
+	}
 	
+	public String Wrongfileupload() throws AWTException, InterruptedException {
+		
+		
+		JavascriptExecutor js=(JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", csv);    //click on img
+		//fileelement.click();
+
+		Robot rb=new Robot();
+		rb.delay(2000);
+
+		StringSelection ss=new StringSelection("C:\\Users\\vidya\\Downloads\\Budget (5)");
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+
+		//ctr v action
+		rb.keyPress(KeyEvent.VK_CONTROL);
+		rb.keyPress(KeyEvent.VK_V);
+
+		rb.keyRelease(KeyEvent.VK_CONTROL);
+		rb.keyRelease(KeyEvent.VK_V);
+
+		rb.keyPress(KeyEvent.VK_ENTER);
+		rb.keyRelease(KeyEvent.VK_ENTER);
+		Thread.sleep(5000);
+		System.out.println(wrongfile.getText());
+		return wrongfile.getText();
+	}
 	
 
 }

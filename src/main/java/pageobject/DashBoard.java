@@ -28,6 +28,24 @@ public class DashBoard extends abstractcomponent {
 	@FindBy (xpath="//*[name()='svg']/*[name()='circle'][1]")
 	WebElement appstore;
 	
+	@FindBy(xpath="//div[text()='PLUM Vision']")
+	WebElement PLUMVISION ;
+	
+	@FindBy(xpath="//div[text()='Correlate']")
+	WebElement CORRELATE;
+	
+	@FindBy(xpath="//div[text()='Target']")
+	WebElement TARGET;
+	
+	@FindBy(xpath="//div[text()='Auto Hedge']")
+	WebElement AUTOHEDGE;
+	
+	@FindBy(xpath="//div[text()='FORGE']")
+	WebElement FORGE;
+	
+	@FindBy(xpath="//div[text()='Cost Basis']")
+	WebElement COST ;
+	
 	public AppStore DashBoard() {
 		
 		appstore.click();
@@ -38,6 +56,22 @@ public class DashBoard extends abstractcomponent {
 		
 		
 	}
+	
+	public void Sixmoduledisplay() throws InterruptedException {
+		
+		Thread.sleep(5000);
+		appstore.click();
+		System.out.println(PLUMVISION.getText()) ;
+		System.out.println(CORRELATE.getText());
+		System.out.println(TARGET.getText());
+		System.out.println(AUTOHEDGE.getText());
+		System.out.println(FORGE.getText());
+		System.out.println(COST.getText());
+	//	return PLUMVISION.getText();
+		
+		
+	}
+	
 	
 	
 	

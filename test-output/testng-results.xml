@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-12-13T15:03:59 IST" name="Default suite" finished-at="2024-12-13T15:04:20 IST" duration-ms="20796">
+  <suite started-at="2024-12-18T17:12:57 IST" name="Default suite" finished-at="2024-12-18T17:13:14 IST" duration-ms="16289">
     <groups>
     </groups>
-    <test started-at="2024-12-13T15:03:59 IST" name="Default test" finished-at="2024-12-13T15:04:20 IST" duration-ms="20796">
-      <class name="test.LoginValidation">
-        <test-method is-config="true" signature="launchApplication()[pri:0, instance:test.LoginValidation@71075444]" started-at="2024-12-13T15:04:00 IST" name="launchApplication" finished-at="2024-12-13T15:04:07 IST" duration-ms="6999" status="PASS">
+    <test started-at="2024-12-18T17:12:57 IST" name="Default test" finished-at="2024-12-18T17:13:14 IST" duration-ms="16289">
+      <class name="test.NegativeScenario">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:test.NegativeScenario@793f29ff]" started-at="2024-12-18T17:12:57 IST" name="launchApplication" finished-at="2024-12-18T17:13:04 IST" duration-ms="6990" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchApplication -->
-        <test-method signature="LoginInvalidcrd()[pri:0, instance:test.LoginValidation@71075444]" started-at="2024-12-13T15:04:07 IST" name="LoginInvalidcrd" finished-at="2024-12-13T15:04:20 IST" duration-ms="13659" status="PASS">
+        <test-method signature="signupsamedata()[pri:0, instance:test.NegativeScenario@793f29ff]" started-at="2024-12-18T17:13:04 IST" name="signupsamedata" finished-at="2024-12-18T17:13:14 IST" duration-ms="9129" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LoginInvalidcrd -->
-        <test-method is-config="true" signature="CloseApplication()[pri:0, instance:test.LoginValidation@71075444]" started-at="2024-12-13T15:04:20 IST" name="CloseApplication" finished-at="2024-12-13T15:04:20 IST" duration-ms="88" status="PASS">
+        </test-method> <!-- signupsamedata -->
+        <test-method is-config="true" signature="CloseApplication()[pri:0, instance:test.NegativeScenario@793f29ff]" started-at="2024-12-18T17:13:14 IST" name="CloseApplication" finished-at="2024-12-18T17:13:14 IST" duration-ms="126" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-      </class> <!-- test.LoginValidation -->
+      </class> <!-- test.NegativeScenario -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -1,9 +1,12 @@
 package pageobject;
 
 import java.io.FileInputStream;
+
+import org.testng.Assert;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.hc.core5.util.Asserts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,6 +40,9 @@ public class SignUp extends abstractcomponent{
 	@FindBy (xpath="//button[@type='submit']")
 	WebElement signup;
 	
+	@FindBy(xpath="//div[text()='An error occurred while creating the account. Please try again later.']")
+	WebElement signupsamemailid;
+	
 	public void SignUpData() throws IOException, InterruptedException
 	{
 		Properties prop=new Properties();
@@ -51,6 +57,7 @@ public class SignUp extends abstractcomponent{
 		email_Id.sendKeys(email);
 		pass.sendKeys(password);
 		signup.click();
+		
 		//Thread.sleep(5000);//	signup.click();
 		
 		
@@ -70,6 +77,77 @@ public class SignUp extends abstractcomponent{
 		
 	}
 	
+	public void NewSignUpData() throws IOException, InterruptedException {
+		
+		Properties prop=new Properties();
+		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+		prop.load(fsi);
+		String firstname=prop.getProperty("firstname1");
+		String lastname=prop.getProperty("lastname2");
+		String email=prop.getProperty("email");
+		String password=prop.getProperty("password");
+		firstName.sendKeys(firstname);
+		lastName.sendKeys(lastname);
+		email_Id.sendKeys(email);
+		pass.sendKeys(password);
+		
+		signup.click();
+		
+		
+		
+	}
+		
+		
+		public String Mailidvalidation() throws IOException, InterruptedException {
+			
+			
+			Properties prop=new Properties();
+			FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+			prop.load(fsi);
+			String firstname=prop.getProperty("firstname1");
+			String lastname=prop.getProperty("lastname2");
+			String email=prop.getProperty("email");
+			String password=prop.getProperty("password");
+			firstName.sendKeys(firstname);
+			lastName.sendKeys(lastname);
+			email_Id.sendKeys(email);
+			pass.sendKeys(password);
+			
+			signup.click();
+			Thread.sleep(5000);
+		
+			System.out.println(signupsamemailid.getText());
+			return signupsamemailid.getText();
+		
+			
+			
+			
+			
+			
+			
+			
+		}
+		public String Samedatavalidation() throws IOException, InterruptedException {
+			
+			Properties prop=new Properties();
+			FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+			prop.load(fsi);
+			String firstname=prop.getProperty("firstname2");
+			String lastname=prop.getProperty("lastname3");
+			String email=prop.getProperty("emailnew");
+			String password=prop.getProperty("newpassword");
+			firstName.sendKeys(firstname);
+			lastName.sendKeys(lastname);
+			email_Id.sendKeys(email);
+			pass.sendKeys(password);
+			
+			signup.click();
+			Thread.sleep(5000);
+		
+			System.out.println(signupsamemailid.getText());
+			return signupsamemailid.getText();
+			
+		}
 	
 	
 	

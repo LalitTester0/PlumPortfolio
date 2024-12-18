@@ -33,7 +33,7 @@ public class AssetAllocationValidationnew extends BaseTest {
 			plum.MonthlyHeatmap();
 			plum.Share();
 			plum.ChatSend();
-			plum.Logout();
+			
 	}
 	@Test
 	public void portfoliologout() throws AWTException, InterruptedException, IOException {
