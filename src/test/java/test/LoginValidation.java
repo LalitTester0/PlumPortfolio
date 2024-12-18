@@ -20,11 +20,13 @@ public class LoginValidation extends BaseTest {
 	@Test
 	public void LoginInvalidcrd() throws IOException, InterruptedException
 	{
-		
+		String expectedtext="Invalid email or password";
 		page.goTo();
-		page.invalidData();
-		Thread.sleep(10000);
-		page.getErrorMessage();
+String actualtext=		page.invalidloginData();
+		
+		Assert.assertEquals(actualtext, expectedtext);
+	
+		
 	}
 		
 	

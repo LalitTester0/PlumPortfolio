@@ -21,19 +21,12 @@ public class SignUpValidation extends BaseTest {
 		
 		Sign.SignUpData();
 		
-		
-		
-	
-		
-		
-		
 	}
-	
-		
 		
 	
+		
 	
-	
+		
 	
 	
 	

@@ -1,7 +1,6 @@
 package pageobject;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -36,6 +35,11 @@ public class LoginPage extends abstractcomponent{
 	@FindBy (xpath="//div[text()='Invalid email or password']")
 	WebElement invalidUser;
 	
+	@FindBy(xpath="//input[@id='password']")
+	WebElement entercorrectuser;
+	
+	
+	
 	public DashBoard loginData() throws IOException {
 		Properties prop=new Properties();
 		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
@@ -49,7 +53,7 @@ public class LoginPage extends abstractcomponent{
 		return dd;
 	}
 	
-	public void invalidData() throws IOException
+	public String invalidloginData() throws IOException
 	{
 		Properties prop=new Properties();
 		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
@@ -59,13 +63,15 @@ public class LoginPage extends abstractcomponent{
 		emailid.sendKeys(user1);
 		password.sendKeys(pass1);
 		signin.click();
+		System.out.println(invalidUser.getText());
+		return invalidUser.getText();
 		
 		
 	}
 	
 	public String getErrorMessage() {
 		
-	return	invalidUser.getText();
+	return	("Invalid email or password");
 	}
 	
 	public SignUp navigateToSignUp() {
@@ -89,5 +95,23 @@ public class LoginPage extends abstractcomponent{
 		Thread.sleep(3000);
 		return null;
 	}
+	
+	public void  NewUserlogin() throws IOException {
+		
+		Properties prop=new Properties();
+		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+		prop.load(fsi);
+		String user1=prop.getProperty("newusername");
+		String pass1=prop.getProperty("newpassword");
+		emailid.sendKeys(user1);
+		password.sendKeys(pass1);
+		signin.click();
+		
+	
+	}
+	
+		
+		
+	
 
 }
