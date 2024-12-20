@@ -21,110 +21,102 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import abstractcomponent.abstractcomponent;
 
 public class PlumVisionnew extends abstractcomponent {
-	
-	
+
 	public WebDriver driver;
-	public PlumVisionnew (WebDriver driver) {
-		
+	public PlumVisionnew(WebDriver driver) {
 		super(driver);
-		this.driver=driver;
-		PageFactory.initElements(driver, this);//PREDEFINE CLASS APPLICABLE FOR ALL ELEMENT
-	
-	
+		this.driver = driver;
+		PageFactory.initElements(driver, this);// PREDEFINE CLASS APPLICABLE FOR ALL ELEMENT
 	}
-	
-	@FindBy( xpath="//img[@alt='xlsx']")
+
+	@FindBy(xpath = "//img[@alt='xlsx']")
 	WebElement csv;
-	@FindBy (xpath="//input[@placeholder='Start Date']")
+	@FindBy(xpath = "//input[@placeholder='Start Date']")
 	WebElement startdate;
-	@FindBy (xpath="//input[@placeholder='End Date']")
+	@FindBy(xpath = "//input[@placeholder='End Date']")
 	WebElement enddate;
-	@FindBy(xpath="//div[contains(@class,'_playBtnDiv')]")
+	@FindBy(xpath = "//div[contains(@class,'_playBtnDiv')]")
 	WebElement playbutton;
-	
-	
-	@FindBy(xpath="//div[contains(text(),'An error occurred while uploading the file. Please try again.')]")	
+	@FindBy(xpath = "//div[contains(text(),'An error occurred while uploading the file. Please try again.')]")
 	WebElement wrongfile;
+	@FindBy(xpath="//div[@class='Toastify']")
+	WebElement toast;
 	
-	public void CsvFileupload() throws AWTException, InterruptedException {
-		
-		
-		JavascriptExecutor js=(JavascriptExecutor)driver;
-		js.executeScript("arguments[0].click();", csv);    //click on img
-		//fileelement.click();
-
-		Robot rb=new Robot();
+	public WebElement csvWebelement() {
+		return csv;
+	}
+	public void uploadCsvFile() throws AWTException, InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", csv); 
+		Robot rb = new Robot();
 		rb.delay(2000);
-
-		StringSelection ss=new StringSelection("C:\\Users\\vidya\\Downloads\\portfolio_updated 1");
+		StringSelection ss = new StringSelection("C:\\Users\\Admin\\Downloads\\portfolio_updated 1 2");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-
-		//ctr v action
 		rb.keyPress(KeyEvent.VK_CONTROL);
 		rb.keyPress(KeyEvent.VK_V);
-
 		rb.keyRelease(KeyEvent.VK_CONTROL);
 		rb.keyRelease(KeyEvent.VK_V);
-
 		rb.keyPress(KeyEvent.VK_ENTER);
 		rb.keyRelease(KeyEvent.VK_ENTER);
-		
-		
 	}
 	
-	public void Startdate() throws InterruptedException {
-		
-		WebElement strtdate=driver.findElement(By.xpath("//input[@placeholder='Start Date']"));
-		Thread.sleep(10000);
+	public String getSuccessfullUploadtext() throws InterruptedException {
+		Thread.sleep(7000);
+		System.out.println(toast.getText());
+		return toast.getText();
+	}
 
-		strtdate.click();
-		strtdate.sendKeys("2024/06/01");
-		WebElement enddate=driver.findElement(By.xpath("//input[@placeholder='End Date']"));
+	public void enterValidParameter() throws InterruptedException {
+		Thread.sleep(5000);
+		startdate.click();
+		startdate.sendKeys("2024/06/01");
 		enddate.sendKeys("2024/06/30");
 		enddate.sendKeys(Keys.ENTER);
-		driver.findElement(By.xpath("//div[contains(@class,'_playBtnDiv')]")).click();
-		Thread.sleep(5000);
 	}
-	public void NodataStartdate() throws InterruptedException {
-		WebElement strtdate=driver.findElement(By.xpath("//input[@placeholder='Start Date']"));
-		Thread.sleep(10000);
-
-		strtdate.click();
-		strtdate.sendKeys("2025/01/01");
-		WebElement enddate=driver.findElement(By.xpath("//input[@placeholder='End Date']"));
+	
+	public BackTestAssetAllocation navigatetoBackTestAssetAllocation() throws AWTException, InterruptedException {
+		uploadCsvFile();
+		enterValidParameter();
+		BackTestAssetAllocation play = clickonplaybutton();
+		return play;
+	}
+	public BackTestAssetAllocation navigatetoBackTestAssetAllocation2() throws AWTException, InterruptedException {
+		uploadCsvFile();
+		enterNoneValidParameter();
+		BackTestAssetAllocation play = clickonplaybutton();
+		return play;
+	}
+	public BackTestAssetAllocation clickonplaybutton() throws InterruptedException {
+		playbutton.click();
+		Thread.sleep(2000);
+		BackTestAssetAllocation back=new BackTestAssetAllocation(driver);
+		return back;
+	}
+	
+	public void enterNoneValidParameter() throws InterruptedException {
+		Thread.sleep(5000);
+		startdate.click();
+		startdate.sendKeys("2025/01/01");
 		enddate.sendKeys("2025/01/30");
 		enddate.sendKeys(Keys.ENTER);
-		driver.findElement(By.xpath("//div[contains(@class,'_playBtnDiv')]")).click();
-		
-		
 	}
 	
+
 	public String Wrongfileupload() throws AWTException, InterruptedException {
-		
-		
-		JavascriptExecutor js=(JavascriptExecutor)driver;
-		js.executeScript("arguments[0].click();", csv);    //click on img
-		//fileelement.click();
-
-		Robot rb=new Robot();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", csv); 
+		Robot rb = new Robot();
 		rb.delay(2000);
-
-		StringSelection ss=new StringSelection("C:\\Users\\vidya\\Downloads\\Budget (5)");
+		StringSelection ss = new StringSelection("C:\\Users\\Admin\\Downloads\\PFLT-Borrowing_Base_Report (26)");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-
-		//ctr v action
 		rb.keyPress(KeyEvent.VK_CONTROL);
 		rb.keyPress(KeyEvent.VK_V);
-
 		rb.keyRelease(KeyEvent.VK_CONTROL);
 		rb.keyRelease(KeyEvent.VK_V);
-
 		rb.keyPress(KeyEvent.VK_ENTER);
 		rb.keyRelease(KeyEvent.VK_ENTER);
-		Thread.sleep(5000);
-		System.out.println(wrongfile.getText());
+		Thread.sleep(7000);
 		return wrongfile.getText();
 	}
-	
 
 }

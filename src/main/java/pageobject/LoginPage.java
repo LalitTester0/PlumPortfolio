@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,105 +12,108 @@ import org.openqa.selenium.support.PageFactory;
 
 import abstractcomponent.abstractcomponent;
 
-public class LoginPage extends abstractcomponent{
-	//locator -initiate the webdriver
+public class LoginPage extends abstractcomponent {
 	public WebDriver driver;
+
 	public LoginPage(WebDriver driver) {
-		
 		super(driver);
-		this.driver=driver;
-		PageFactory.initElements(driver, this);//PREDEFINE CLASS APPLICABLE FOR ALL ELEMENT
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
-	@FindBy (id="email")
+
+	@FindBy(id = "email")
 	WebElement emailid;
-	@FindBy (id="password")
+	@FindBy(id = "password")
 	WebElement password;
-	@FindBy(xpath="//button[normalize-space()='Sign in']")
+	@FindBy(xpath = "//button[normalize-space()='Sign in']")
 	WebElement signin;
-	
-	@FindBy(xpath="//span[text()=' Sign up']")
+	@FindBy(xpath = "//span[text()=' Sign up']")
 	WebElement signup;
-	
-	@FindBy (xpath="//div[text()='Invalid email or password']")
+	@FindBy(xpath = "//div[text()='Invalid email or password']")
+	WebElement invalidUser1;
+	@FindBy(xpath = "//div[@class=\"Toastify__toast-body\"]//div[2]")
 	WebElement invalidUser;
-	
-	@FindBy(xpath="//input[@id='password']")
+	@FindBy(xpath = "//input[@id='password']")
 	WebElement entercorrectuser;
-	
-	
-	
-	public DashBoard loginData() throws IOException {
-		Properties prop=new Properties();
-		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+
+	public DashBoard entervalidLoginData() throws IOException {
+		Properties prop = new Properties();
+		FileInputStream fsi = new FileInputStream(
+		(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\globaldata.properties"));
 		prop.load(fsi);
-		String user1=prop.getProperty("username");
-		String pass1=prop.getProperty("password");
+		String user1 = prop.getProperty("username");
+		String pass1 = prop.getProperty("password");
 		emailid.sendKeys(user1);
 		password.sendKeys(pass1);
 		signin.click();
-		DashBoard dd=new DashBoard(driver);
+		DashBoard dd = new DashBoard(driver);
 		return dd;
 	}
 	
-	public String invalidloginData() throws IOException
-	{
-		Properties prop=new Properties();
-		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+	public WebElement emailidWeblelemnent() {
+		return emailid;
+	}
+
+	public String enterinvalidloginData() throws IOException, InterruptedException {
+		Properties prop = new Properties();
+		FileInputStream fsi = new FileInputStream(
+		(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\globaldata.properties"));
 		prop.load(fsi);
-		String user1=prop.getProperty("wrongusername");
-		String pass1=prop.getProperty("wrongpassword");
+		String user1 = prop.getProperty("wrongusername");
+		String pass1 = prop.getProperty("wrongpassword");
 		emailid.sendKeys(user1);
 		password.sendKeys(pass1);
 		signin.click();
-		System.out.println(invalidUser.getText());
+		Thread.sleep(2000);
 		return invalidUser.getText();
-		
-		
 	}
+
 	
-	public String getErrorMessage() {
-		
-	return	("Invalid email or password");
-	}
-	
+
 	public SignUp navigateToSignUp() {
-		Actions act=new Actions(driver);
+		Actions act = new Actions(driver);
 		act.click(signup).perform();
-		
-		SignUp sign=new SignUp(driver);
+		SignUp sign = new SignUp(driver);
 		return sign;
 	}
-	
-	
-	
-	
-	
-	public DashBoard goTo()throws IOException, InterruptedException {
-		Properties prop=new Properties();
-		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+
+	public DashBoard goTo() throws IOException, InterruptedException {
+		Properties prop = new Properties();
+		FileInputStream fsi = new FileInputStream(
+		(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\globaldata.properties"));
 		prop.load(fsi);
-		String link=prop.getProperty("url");
+		String link = prop.getProperty("url");
 		driver.get(link);
 		Thread.sleep(3000);
 		return null;
 	}
-	
-	public void  NewUserlogin() throws IOException {
-		
-		Properties prop=new Properties();
-		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
+
+	public void NewUserlogin() throws IOException {
+		Properties prop = new Properties();
+		FileInputStream fsi = new FileInputStream(
+		(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\globaldata.properties"));
 		prop.load(fsi);
-		String user1=prop.getProperty("newusername");
-		String pass1=prop.getProperty("newpassword");
+		String user1 = prop.getProperty("newusername");
+		String pass1 = prop.getProperty("newpassword");
 		emailid.sendKeys(user1);
 		password.sendKeys(pass1);
 		signin.click();
-		
-	
 	}
 	
-		
-		
+	public DashBoard enterSenderLoginData() throws IOException {
+		emailid.sendKeys("sender1@gmail.com");
+		password.sendKeys("Test@123");
+		signin.click();
+		DashBoard dd = new DashBoard(driver);
+		return dd;
+	}
 	
+	public DashBoard enterReceiverLoginData() throws IOException {
+		emailid.sendKeys("receiver1@gmail.com");
+		password.sendKeys("Test@123");
+		signin.click();
+		DashBoard dd = new DashBoard(driver);
+		return dd;
+	}
 
 }

@@ -16,141 +16,89 @@ import com.github.javafaker.Faker;
 
 import abstractcomponent.abstractcomponent;
 
-public class SignUp extends abstractcomponent{
-	
+public class SignUp extends abstractcomponent {
 	public WebDriver driver;
-	public SignUp (WebDriver driver) {
-		
+
+	public SignUp(WebDriver driver) {
 		super(driver);
-		this.driver=driver;
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	
-	
-	
-	@FindBy (xpath="//input[@placeholder='First name']")
-	WebElement firstName;
-	@FindBy (xpath="//input[@placeholder='Last name']")
-	WebElement lastName;
-	@FindBy (xpath="//input[@placeholder='Email']")
-	WebElement email_Id;
-	@FindBy (xpath="//input[@placeholder='Password']")
-	WebElement pass;
-	@FindBy (xpath="//button[@type='submit']")
-	WebElement signup;
-	
-	@FindBy(xpath="//div[text()='An error occurred while creating the account. Please try again later.']")
-	WebElement signupsamemailid;
-	
-	public void SignUpData() throws IOException, InterruptedException
-	{
-		Properties prop=new Properties();
-		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
-		prop.load(fsi);
-		String firstname=prop.getProperty("firstname");
-		String lastname=prop.getProperty("lastname");
-		String email=randomstring();
-		String password=prop.getProperty("password");
-		firstName.sendKeys(firstname);
-		lastName.sendKeys(lastname);
-		email_Id.sendKeys(email);
-		pass.sendKeys(password);
-		signup.click();
-		
-		//Thread.sleep(5000);//	signup.click();
-		
-		
-		
-		
-	}
-	
-	public String randomstring() {
-		Faker random=new Faker();
-		
-		String firstname=random.name().firstName();
-		String lastname=random.name().lastName();
-		
-		String email=firstname.toLowerCase()+""+lastname.toLowerCase()+"@gmail.com";
-	
-		return email;
-		
-	}
-	
-	public void NewSignUpData() throws IOException, InterruptedException {
-		
-		Properties prop=new Properties();
-		FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
-		prop.load(fsi);
-		String firstname=prop.getProperty("firstname1");
-		String lastname=prop.getProperty("lastname2");
-		String email=prop.getProperty("email");
-		String password=prop.getProperty("password");
-		firstName.sendKeys(firstname);
-		lastName.sendKeys(lastname);
-		email_Id.sendKeys(email);
-		pass.sendKeys(password);
-		
-		signup.click();
-		
-		
-		
-	}
-		
-		
-		public String Mailidvalidation() throws IOException, InterruptedException {
-			
-			
-			Properties prop=new Properties();
-			FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
-			prop.load(fsi);
-			String firstname=prop.getProperty("firstname1");
-			String lastname=prop.getProperty("lastname2");
-			String email=prop.getProperty("email");
-			String password=prop.getProperty("password");
-			firstName.sendKeys(firstname);
-			lastName.sendKeys(lastname);
-			email_Id.sendKeys(email);
-			pass.sendKeys(password);
-			
-			signup.click();
-			Thread.sleep(5000);
-		
-			System.out.println(signupsamemailid.getText());
-			return signupsamemailid.getText();
-		
-			
-			
-			
-			
-			
-			
-			
-		}
-		public String Samedatavalidation() throws IOException, InterruptedException {
-			
-			Properties prop=new Properties();
-			FileInputStream fsi=new FileInputStream((System.getProperty("user.dir")+"\\src\\main\\java\\resources\\globaldata.properties"));
-			prop.load(fsi);
-			String firstname=prop.getProperty("firstname2");
-			String lastname=prop.getProperty("lastname3");
-			String email=prop.getProperty("emailnew");
-			String password=prop.getProperty("newpassword");
-			firstName.sendKeys(firstname);
-			lastName.sendKeys(lastname);
-			email_Id.sendKeys(email);
-			pass.sendKeys(password);
-			
-			signup.click();
-			Thread.sleep(5000);
-		
-			System.out.println(signupsamemailid.getText());
-			return signupsamemailid.getText();
-			
-		}
-	
-	
-	
 
+	@FindBy(xpath = "//input[@placeholder='First name']")
+	WebElement firstName;
+	@FindBy(xpath = "//input[@placeholder='Last name']")
+	WebElement lastName;
+	@FindBy(xpath = "//input[@placeholder='Email']")
+	WebElement email_Id;
+	@FindBy(xpath = "//input[@placeholder='Password']")
+	WebElement pass;
+	@FindBy(xpath = "//button[@type='submit']")
+	WebElement signup;
+	@FindBy(xpath="//div[@class='Toastify']")
+	WebElement toast;
+
+	public void SignUpData() throws IOException, InterruptedException {
+		Properties prop = new Properties();
+		FileInputStream fsi = new FileInputStream(
+		(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\globaldata.properties"));
+		prop.load(fsi);
+		String firstname = prop.getProperty("firstname");
+		String lastname = prop.getProperty("lastname");
+		String email = randomstring();
+		String password = prop.getProperty("password");
+		firstName.sendKeys(firstname);
+		lastName.sendKeys(lastname);
+		email_Id.sendKeys(email);
+		pass.sendKeys(password);
+		signup.click();
+		
+	}
+
+	public String randomstring() {
+		Faker random = new Faker();
+		String firstname = random.name().firstName();
+		String lastname = random.name().lastName();
+		String email = firstname.toLowerCase() + "" + lastname.toLowerCase() + "@gmail.com";
+		return email;
+	}
+
+	public void NewSignUpData() throws IOException, InterruptedException {
+		Properties prop = new Properties();
+		FileInputStream fsi = new FileInputStream(
+		(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\globaldata.properties"));
+		prop.load(fsi);
+		String firstname = prop.getProperty("firstname1");
+		String lastname = prop.getProperty("lastname2");
+		String email = prop.getProperty("email");
+		String password = prop.getProperty("password");
+		firstName.sendKeys(firstname);
+		lastName.sendKeys(lastname);
+		email_Id.sendKeys(email);
+		pass.sendKeys(password);
+		signup.click();
+
+	}
+
+	public String duplicateMailidvalidation() throws IOException, InterruptedException {
+		Properties prop = new Properties();
+		FileInputStream fsi = new FileInputStream(
+		(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\globaldata.properties"));
+		prop.load(fsi);
+		String firstname = prop.getProperty("firstname1");
+		String lastname = prop.getProperty("lastname2");
+		String email = prop.getProperty("email");
+		String password = prop.getProperty("password");
+		firstName.sendKeys(firstname);
+		lastName.sendKeys(lastname);
+		email_Id.sendKeys(email);
+		pass.sendKeys(password);
+		signup.click();
+		Thread.sleep(3000);
+		return toast.getText();
+
+	}
+
+	
 
 }

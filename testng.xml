@@ -9,6 +9,9 @@
     <classes>
       <class name="test.SignUpValidation"/>
       <class name="test.LoginValidation"/>
+      <class name="test.AppStoreValidation"/>
+      <class name="test.FileUploadValidation"/>
+      <class name="test.FileValidation"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
